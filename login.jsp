@@ -167,6 +167,18 @@
     </div>
 
     <div class="card-body">
+        <%
+            String error = request.getParameter("error");
+            if(error != null){
+        %>
+
+        <div class="alert alert-danger">
+            Invalid email or password.
+        </div>
+
+        <%
+            }
+        %>
 
         <form action="LoginServlet" method="post">
 
