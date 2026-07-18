@@ -1,8 +1,10 @@
-package com.mycompany.parceltracking;
+package parcelTracking.dao;
 
+import parcelTracking.bean.TrackingData;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import parcelTracking.util.DBConnection;
 
 public class TrackingDAO {
     // Assuming you have a DBConnection utility class in your project

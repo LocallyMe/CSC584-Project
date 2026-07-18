@@ -1,4 +1,4 @@
-package com.mycompany.parceltracking;
+package parcelTracking.bean;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

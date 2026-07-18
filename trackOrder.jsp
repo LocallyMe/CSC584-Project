@@ -185,16 +185,66 @@
 <body>
 
     <header>
-        <div class="logo"><strong>Lovelle</strong></div>
-        <div class="nav-links">
-            <a href="#">The Collection</a>
-            <a href="#" class="active">Track Order</a>
-            <a href="#">My Account</a>
-        </div>
-        <div class="actions">
-            <a href="#">Storefront</a>
-        </div>
-    </header>
+
+<div class="logo">
+    Lovelle
+</div>
+
+<div class="nav-links">
+
+<%
+
+if(session.getAttribute("userID")==null){
+
+%>
+
+    <a href="trackOrder.jsp" class="active">
+        Track Parcel
+    </a>
+
+    <a href="login.jsp">
+        Login
+    </a>
+
+    <a href="login.jsp?redirect=customerService">
+        Customer Service
+    </a>
+
+<%
+
+}else{
+
+%>
+
+    <a href="customerDashboard.jsp">
+        Home
+    </a>
+
+    <a href="trackOrder.jsp" class="active">
+        Track Parcel
+    </a>
+
+    <a href="customerService.jsp">
+        Customer Service
+    </a>
+
+    <a href="myProfile.jsp">
+        My Profile
+    </a>
+
+    <a href="LogoutServlet">
+        Logout
+    </a>
+
+<%
+
+}
+
+%>
+
+</div>
+
+</header>
 
     <!-- Tracker Interface -->
     <div class="tracker-container">
@@ -202,7 +252,7 @@
         <p class="subtitle">Enter your unique Lovelle tracking code to locate your shipment.</p>
 
         <!-- Search Form -->
-        <form action="${pageContext.request.contextPath}/track-parcel" method="POST" class="search-bar">
+        <form action="${pageContext.request.contextPath}/TrackingServlet" method="POST" class="search-bar">
             <input type="text" name="trackingNumber" class="search-input" placeholder="e.g. TRK-BLUSH-59281" required>
             <button type="submit" class="btn-locate">LOCATE SHIPMENT</button>
         </form>
@@ -224,10 +274,13 @@
                     <!-- Dynamic Pill based on ENUM Status -->
                     <c:choose>
                         <c:when test="${trackingData.currentStatus == 'Delivered'}">
-                            <div class="pill-delivered">${trackingData.currentStatus}</div>
+                            <div class="pill-delivered"> ${trackingData.currentStatus}</div>
+                        </c:when>
+                        <c:when test="${trackingData.currentStatus == 'Lost'}">
+                            <div style="background:#dc3545;color:white;padding:5px 15px;border-radius:20px;"> ${trackingData.currentStatus} </div>
                         </c:when>
                         <c:otherwise>
-                            <div class="pill-pending">${trackingData.currentStatus}</div>
+                            <div class="pill-pending"> ${trackingData.currentStatus}</div>
                         </c:otherwise>
                     </c:choose>
                 </div>

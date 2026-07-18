@@ -183,6 +183,11 @@
         <form action="LoginServlet" method="post">
 
             <div class="mb-3">
+                
+                <input
+                    type="hidden"
+                    name="redirect"
+                    value="<%= request.getParameter("redirect") == null ? "" : request.getParameter("redirect") %>">
 
                 <label>Email</label>
 

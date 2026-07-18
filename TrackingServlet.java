@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package com.mycompany.parceltracking;
+package parcelTracking.servlet;
 
+import parcelTracking.bean.TrackingData;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,12 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import parcelTracking.dao.TrackingDAO;
 
 /**
  *
  * @author Asus
  */
-@WebServlet("/track-parcel")
+@WebServlet("/TrackingServlet")
 public class TrackingServlet extends HttpServlet {
     
     private TrackingDAO trackingDAO;
@@ -63,9 +65,12 @@ public class TrackingServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    protected void doGet(HttpServletRequest request,
+                         HttpServletResponse response)
+                         throws ServletException, IOException {
+
+        doPost(request,response);
+
     }
 
     /**
@@ -83,7 +88,7 @@ public class TrackingServlet extends HttpServlet {
     String trackingNumber = request.getParameter("trackingNumber");
         
         if (trackingNumber != null && !trackingNumber.trim().isEmpty()) {
-            TrackingData trackingData = trackingDAO.getTrackingDetails(trackingNumber.trim());
+            TrackingData trackingData = (TrackingData) trackingDAO.getTrackingDetails(trackingNumber.trim());
             
             if (trackingData != null) {
                 request.setAttribute("trackingData", trackingData);
