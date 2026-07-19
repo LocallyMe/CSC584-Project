@@ -240,6 +240,10 @@ Track Parcel
 Customer Service
 
 </a>
+    
+<a href="ProfileServlet">
+    My Profile
+</a>
 
 
 <a href="LogoutServlet">

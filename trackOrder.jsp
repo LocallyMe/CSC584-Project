@@ -228,7 +228,7 @@ if(session.getAttribute("userID")==null){
         Customer Service
     </a>
 
-    <a href="myProfile.jsp">
+    <a href="ProfileServlet">
         My Profile
     </a>
 

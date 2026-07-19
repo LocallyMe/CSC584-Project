@@ -221,6 +221,10 @@ Track Parcel
 Customer Service
 
 </a>
+    
+<a href="ProfileServlet">
+    My Profile
+</a>
 
 
 <a href="LogoutServlet">
@@ -366,7 +370,7 @@ View your account information.
 </p>
 
 
-<a href="#" class="btn">
+<a href="ProfileServlet" class="btn">
 
 View Profile
 

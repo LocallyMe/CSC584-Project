@@ -7,14 +7,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+if(request.getAttribute("user") == null){
 
-if(session.getAttribute("userID")==null){
-
-    response.sendRedirect("login.jsp");
+    response.sendRedirect("ProfileServlet");
     return;
 
 }
-
 %>
 
 <!DOCTYPE html>
@@ -208,7 +206,7 @@ Full Name
 
 <td>
 
-<%=session.getAttribute("fullName")%>
+${user.fullName}
 
 </td>
 
@@ -250,22 +248,6 @@ ${user.phoneNumber}
 
 <td class="label">
 
-Address
-
-</td>
-
-<td>
-
-${user.address}
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="label">
-
 Role
 
 </td>
@@ -282,7 +264,7 @@ Customer
 
 <br>
 
-<a href="editProfile.jsp">
+<a href="EditProfileServlet">
 
 <button class="btn edit">
 

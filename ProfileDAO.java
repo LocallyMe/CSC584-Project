@@ -37,7 +37,6 @@ public class ProfileDAO {
                 user.setFullName(rs.getString("fullName"));
                 user.setEmail(rs.getString("email"));
                 user.setPhoneNumber(rs.getString("phoneNumber"));
-                user.setAddress(rs.getString("address"));
                 user.setRole(rs.getString("role"));
 
             }
@@ -52,5 +51,70 @@ public class ProfileDAO {
 
     }
 
-}
+    public boolean updateProfile(User user) {
+
+        boolean result=false;
+
+        String sql=
+        "UPDATE users SET fullName=?, phoneNumber=?, email=? WHERE userID=?";
+
+        try{
+
+        Connection con=DBConnection.getConnection();
+
+        PreparedStatement ps=con.prepareStatement(sql);
+
+        ps.setString(1,user.getFullName());
+        ps.setString(2,user.getPhoneNumber());
+        ps.setString(3,user.getEmail());
+        ps.setInt(4,user.getUserID());
+
+        result=ps.executeUpdate()>0;
+
+        }catch(Exception e){
+
+        e.printStackTrace();
+
+        }
+
+        return result;
+
+        }
+    
+    public boolean changePassword(int userID,
+        String currentPassword,
+        String newPassword){
+
+        boolean result=false;
+
+        String sql=
+        "UPDATE users SET password=? WHERE userID=? AND password=?";
+
+        try{
+
+        Connection con=DBConnection.getConnection();
+
+        PreparedStatement ps=con.prepareStatement(sql);
+
+        ps.setString(1,newPassword);
+        ps.setInt(2,userID);
+        ps.setString(3,currentPassword);
+
+        int row = ps.executeUpdate();
+
+        System.out.println("Rows Updated = " + row);
+
+        result = row > 0;
+
+        }catch(Exception e){
+
+        e.printStackTrace();
+
+        }
+
+        return result;
+
+        }
+    }
+
 
